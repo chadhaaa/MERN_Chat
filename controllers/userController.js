@@ -30,7 +30,7 @@ exports.login = async(req,res) => {
     const user = await User.findOne({email, password: sha256(password + process.env.SALT),}); 
 
     if (!user) throw "Email and Password did not match."; 
-    const token = await jwt.sign({id: user.id}, process.env.SECRET);
+    const token = await jwt.sign({ id: user.id }, process.env.SECRET);
 
     res.json({
         message: "User logged in successfully !",
